@@ -19,26 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-}
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self loadNewWebPage:textField.text];
-    return TRUE;
-}
-
-- (void)webViewDidStartLoad:(UIWebView *)webView
-{
-    [self.spinner startAnimating];
-    self.spinner.hidden = FALSE;
-    
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
     self.spinner.hidden = TRUE;
-    [self.spinner stopAnimating];
 }
 
 - (void)loadNewWebPage:(NSString *)string
@@ -49,10 +31,33 @@
     [self.webView loadRequest:addressRequest];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [self.spinner startAnimating];
+    self.spinner.hidden = FALSE;
 }
-//comment
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    self.spinner.hidden = TRUE;
+    [self.spinner stopAnimating];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self loadNewWebPage:textField.text];
+    return TRUE;
+}
+
+- (IBAction)onBackButtonPressed:(id)sender
+{
+    [self.webView goBack];
+}
+
+- (IBAction)onForwardButtonPressed:(id)sender
+{
+    [self.webView goForward];
+}
+
 
 @end
