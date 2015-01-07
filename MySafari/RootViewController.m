@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadNewWebPage:@"http://theageofmammals.com/burgers"];
 
     self.spinner.hidden = TRUE;
 }
@@ -49,9 +50,27 @@
     return TRUE;
 }
 
-- (IBAction)onBackButtonPressed:(id)sender
+- (IBAction)onReloadButtonPressed:(id)sender
 {
-    [self.webView goBack];
+    [self.webView reload];
+}
+
+- (IBAction)onStopButtonPressed:(id)sender
+{
+    [self.webView stopLoading];
+}
+
+- (IBAction)onBackButtonPressed:(UIButton *)sender
+{
+    if (self.webView.canGoBack)
+    {
+        [self.webView goBack];
+    }
+    else
+    {
+        sender.enabled = FALSE;
+    }
+    ;
 }
 
 - (IBAction)onForwardButtonPressed:(id)sender
