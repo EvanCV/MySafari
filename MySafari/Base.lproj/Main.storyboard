@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -100,6 +100,17 @@
                                             <action selector="onReloadButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6o3-UL-wGy"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJA-ed-Q5Z">
+                                        <rect key="frame" x="138" y="10" width="30" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onPlusButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0iV-bC-MPH"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -107,11 +118,14 @@
                                     <constraint firstItem="Apa-2v-oy0" firstAttribute="top" secondItem="Zzn-wE-GFB" secondAttribute="top" constant="10" id="B22-bq-52i"/>
                                     <constraint firstItem="Apa-2v-oy0" firstAttribute="leading" secondItem="cht-nf-avI" secondAttribute="trailing" constant="62" id="Cra-LT-lee"/>
                                     <constraint firstAttribute="bottom" secondItem="Qb6-77-mWW" secondAttribute="bottom" constant="10" id="F3m-lY-SqR"/>
+                                    <constraint firstAttribute="centerX" secondItem="kJA-ed-Q5Z" secondAttribute="centerX" id="Jhc-4N-EFE"/>
                                     <constraint firstAttribute="bottom" secondItem="1af-So-Muh" secondAttribute="bottom" constant="10" id="Ryy-cz-8fW"/>
                                     <constraint firstAttribute="trailing" secondItem="Apa-2v-oy0" secondAttribute="trailing" constant="8" id="VZt-IP-r2l"/>
                                     <constraint firstItem="cht-nf-avI" firstAttribute="top" secondItem="Zzn-wE-GFB" secondAttribute="top" constant="10" id="Z0B-nL-B7z"/>
                                     <constraint firstItem="1af-So-Muh" firstAttribute="leading" secondItem="Qb6-77-mWW" secondAttribute="trailing" constant="48" id="Z74-69-Jx3"/>
+                                    <constraint firstAttribute="bottom" secondItem="kJA-ed-Q5Z" secondAttribute="bottom" constant="10" id="eMj-QI-iCZ"/>
                                     <constraint firstItem="Qb6-77-mWW" firstAttribute="top" secondItem="Zzn-wE-GFB" secondAttribute="top" constant="10" id="fem-e7-MEB"/>
+                                    <constraint firstItem="kJA-ed-Q5Z" firstAttribute="top" secondItem="Zzn-wE-GFB" secondAttribute="top" constant="10" id="kZe-Rp-ScT"/>
                                     <constraint firstAttribute="bottom" secondItem="cht-nf-avI" secondAttribute="bottom" constant="10" id="mOD-Wz-bcM"/>
                                     <constraint firstItem="1af-So-Muh" firstAttribute="top" secondItem="Zzn-wE-GFB" secondAttribute="top" constant="10" id="pMg-84-O5A"/>
                                     <constraint firstItem="Qb6-77-mWW" firstAttribute="leading" secondItem="Zzn-wE-GFB" secondAttribute="leading" constant="8" id="qt7-DS-CGQ"/>

@@ -8,7 +8,7 @@
 
 #import "RootViewController.h"
 
-@interface RootViewController () <UIWebViewDelegate, UITextFieldDelegate>
+@interface RootViewController () <UIWebViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UITextField *urlTextField;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
@@ -25,6 +25,7 @@
     self.spinner.hidden = TRUE;
     self.backwardButton.enabled = FALSE;
     self.forwardButton.enabled = FALSE;
+    self.webView.scrollView.delegate = self;
 }
 
 - (void)loadNewWebPage:(NSString *)string
@@ -71,6 +72,11 @@
     {
         self.forwardButton.enabled = FALSE;
     }
+    
+    //this code collects the current URL and updates the urlTextField upon load of page
+    NSURLRequest *currentRequest = [webView request];
+    NSURL *currentURL = [currentRequest URL];
+    self.urlTextField.text = currentURL.absoluteString;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -99,5 +105,20 @@
     [self.webView goForward];
 }
 
+- (IBAction)onPlusButtonPressed:(UIButton *)sender
+{
+    UIAlertView *alertView = [UIAlertView new];
+    alertView.delegate = self;
+    alertView.message = @"Coming Soon!";
+    [alertView addButtonWithTitle:@"Okay"];
+    [alertView show];
+    self.spinner.hidden = TRUE;
+    [self.spinner stopAnimating];
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    
+}
 
 @end
