@@ -26,6 +26,8 @@
     self.backwardButton.enabled = FALSE;
     self.forwardButton.enabled = FALSE;
     self.webView.scrollView.delegate = self;
+
+    self.urlTextField.backgroundColor = [UIColor clearColor];
 }
 
 - (void)loadNewWebPage:(NSString *)string
@@ -50,6 +52,10 @@
 {
     self.spinner.hidden = TRUE;
     [self.spinner stopAnimating];
+
+    NSString *theTitle=[webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    self.navigationItem.title = theTitle;
+    
 
     //Enabling/disabling backward button depending on whether the user can back to a previous page
     if ([self.webView canGoBack])
@@ -116,9 +122,22 @@
     [self.spinner stopAnimating];
 }
 
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+
+-(void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    
+    CGPoint translation = [scrollView.panGestureRecognizer translationInView:scrollView.superview];
+
+    if(translation.y < 0)
+    {
+        // react to dragging down
+        self.urlTextField.hidden = TRUE;
+    }
+    else
+    {
+        // react to dragging up
+        self.urlTextField.hidden = FALSE;
+    }
 }
+
 
 @end
