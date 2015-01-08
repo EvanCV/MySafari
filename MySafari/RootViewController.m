@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UITextField *urlTextField;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (weak, nonatomic) IBOutlet UIButton *backwardButton;
+@property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 
 @end
 
@@ -20,13 +22,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadNewWebPage:@"http://theageofmammals.com/burgers"];
-
     self.spinner.hidden = TRUE;
+    self.backwardButton.enabled = FALSE;
+    self.forwardButton.enabled = FALSE;
 }
 
 - (void)loadNewWebPage:(NSString *)string
 {
     NSString *addressString = string;
+    if (![string hasPrefix:@"http://"])
+    {
+        addressString = [NSString stringWithFormat:@"http://%@", string];
+    }
     NSURL *adddressURL = [NSURL URLWithString:addressString];
     NSURLRequest *addressRequest = [NSURLRequest requestWithURL:adddressURL];
     [self.webView loadRequest:addressRequest];
@@ -42,6 +49,28 @@
 {
     self.spinner.hidden = TRUE;
     [self.spinner stopAnimating];
+
+    //Enabling/disabling backward button depending on whether the user can back to a previous page
+    if ([self.webView canGoBack])
+    {
+        self.backwardButton.enabled = TRUE;
+    }
+
+    if (![self.webView canGoBack])
+    {
+        self.backwardButton.enabled = FALSE;
+    }
+
+    //Enabling/disabling forward button depending on whether or not the user can go forward to a previous page
+    if ([self.webView canGoForward])
+    {
+        self.forwardButton.enabled = TRUE;
+    }
+
+    if (![self.webView canGoForward])
+    {
+        self.forwardButton.enabled = FALSE;
+    }
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -62,15 +91,7 @@
 
 - (IBAction)onBackButtonPressed:(UIButton *)sender
 {
-    if (self.webView.canGoBack)
-    {
         [self.webView goBack];
-    }
-    else
-    {
-        sender.enabled = FALSE;
-    }
-    ;
 }
 
 - (IBAction)onForwardButtonPressed:(id)sender
